@@ -98,15 +98,31 @@ export default function AliensPage() {
             ))}
           </div>
           <div style={styles.pinGrid}>
-            {['1','2','3','4','5','6','7','8','9','','0','⌫'].map((d, i) => (
+            {[
+              { d: '1', sub: '' },
+              { d: '2', sub: 'ABC' },
+              { d: '3', sub: 'DEF' },
+              { d: '4', sub: 'GHI' },
+              { d: '5', sub: 'JKL' },
+              { d: '6', sub: 'MNO' },
+              { d: '7', sub: 'PQRS' },
+              { d: '8', sub: 'TUV' },
+              { d: '9', sub: 'WXYZ' },
+              { d: '', sub: '' },
+              { d: '0', sub: '+' },
+              { d: '⌫', sub: '' },
+            ].map(({ d, sub }, i) => (
               <button
                 key={i}
-                style={{ ...styles.pinKey, opacity: d === '' ? 0 : 1 }}
+                style={{ ...styles.pinKey, opacity: d === '' ? 0 : 1, flexDirection: 'column', gap: 2 }}
                 onClick={() => {
                   if (d === '⌫') setPinInput(p => p.slice(0, -1));
                   else if (d !== '') handlePin(d);
                 }}
-              >{d}</button>
+              >
+                <span>{d}</span>
+                {sub && <span style={{ fontSize: '0.45rem', letterSpacing: '0.15em', color: 'rgba(0,255,159,0.5)' }}>{sub}</span>}
+              </button>
             ))}
           </div>
         </div>
